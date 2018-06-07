@@ -1,0 +1,75 @@
+/** 
+ * Main CSS
+ * Customize styles of sui.css and other components
+ */
+
+@import './css-vars.scss';
+
+$background-color: #e6e6e6!default;
+$Link-color: rgba(1, 88, 247, .7)!default;
+
+@mixin root-variables() {
+    @include css-vars((
+        --Link-color: $Link-color,
+    ));
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: $background-color;
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 1;
+    border-bottom: 2px solid #eaeaea;
+    box-shadow: 1px 0px 10px rgba(0, 0, 0, .4);
+}
+
+/* MAIN CONTAINER */
+.Container {
+    padding-top: 100px;
+}
+
+/* HEADER MENU */
+.Header-menu {
+    float: right;
+    li {
+        display: inline-block;
+        padding: 15px 10px;
+        .Link {
+            padding: 15px 10px;
+        }
+    }
+}
+
+/* A */
+.Link {
+
+    @include root-variables();
+    
+    color: var(--Link-color);
+    border: 1px solid transparent; 
+    
+    &:hover {
+        color: var(--Link-color);
+        font-weight: 700;
+    }
+
+    &:active {
+        color: var(--Link-color);
+        font-weight: 700;
+        border: 1px solid var(--Link-color);
+    }
+
+    &.is-active {
+        border-bottom: 4px solid var(--Link-color);
+    }
+
+}

@@ -1,0 +1,44 @@
+/**
+ * Button Component
+ */
+
+@import '../../scss/css-vars.scss';
+
+$Button-color: #fff!default;
+$Button-background-color: rgba(1, 88, 247, .8)!default;
+$Button-border-radius: 50px!default;
+$Button-box-shadow: 0px 3px 19px rgba(0, 0, 0, .5)!default;
+
+@mixin root-variables() {
+    @include css-vars((
+        --Button-color: $Button-color,
+        --Button-background-color: $Button-background-color,
+        --Button-border-radius: $Button-border-radius,
+        --Button-box-shadow: $Button-box-shadow
+    ));
+}
+
+.Button {
+
+    outline: none;
+
+    &.Button--addItems {
+
+        @include root-variables();
+
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 60px;
+        height: 60px;
+        padding: 0;
+        font-size: 3rem;
+        color: var(--Button-color);
+
+        background-color: var(--Button-background-color);
+        border-radius: var(--Button-border-radius);
+        box-shadow: var(--Button-box-shadow);
+
+    }
+
+}

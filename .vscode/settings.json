@@ -1,0 +1,6 @@
+{
+    "todo-tree.flat": true,
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "editor.trimAutoWhitespace": true,
+    "files.trimTrailingWhitespace": true
+}

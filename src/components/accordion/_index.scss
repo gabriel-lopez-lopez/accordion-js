@@ -1,0 +1,117 @@
+/** 
+ * Accordion Component 
+ */
+
+@import '../../scss/css-vars.scss';
+
+$Accordion-color: #444;
+$Accordion-background-color: transparent!default;
+$Accordion-dlist-background-color: rgba(255, 255, 255, .7)!default;
+$Accordion-border-color: #e2e2e2!default;
+
+@mixin root-variables() {
+    @include css-vars((
+        --Accordion-color: $Accordion-color,
+        --Accordion-background-color: $Accordion-background-color,
+        --Accordion-dlist-background-color: $Accordion-dlist-background-color,
+        --Accordion-border-color: $Accordion-border-color
+    ));
+}
+
+.Accordion {
+    
+    @include root-variables();
+
+    width: 100%;
+    color: var(--Accordion-color);
+    background-color: var(--Accordion-background-color);
+    user-select: none; 
+    
+    & dt {
+        padding: 1rem;
+        min-height: 53px;
+        background-color: var(--Accordion-dlist-background-color);
+        border: solid var(--Accordion-border-color);
+        border-width: 1px 1px 0;
+        transform: rotate(0deg);
+        transition: transform .1s;
+
+        &.Accordion--link {
+            cursor: pointer;
+        }
+
+        &.Accordion--menu {
+            font-size: .9rem;
+            text-align: right;
+            a.Link.is-active {
+                border: none;
+            }
+        }
+
+        i {
+            float: right;
+            margin: 0 10px;
+            padding: 6px;
+            border: solid var(--Accordion-color);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            transition: margin .1s, transform .2s ease-out;
+        }
+        
+        &.is-animating {
+            font-weight: 700;
+            border-bottom: none; 
+            transform: rotate(.00001deg);
+            i {
+                margin: 7px 10px;
+                transform: rotate(-135deg);
+            }
+        }
+
+        &.is-new {
+            opacity: 0;
+            animation: new-item-animation .4s cubic-bezier(.17,.67,.83,.67) forwards;
+        }
+         
+    }
+
+    & dd {
+        max-height: 0;
+        background-color: var(--Accordion-dlist-background-color);
+        border: solid var(--Accordion-border-color);
+        border-width: 0 1px 0 1px;
+        overflow: hidden;
+        transition: max-height .2s ease-out;
+
+        p {
+            padding: 0rem 1rem 1.5rem;
+        }
+
+        &:last-child {
+            border-bottom: 1px solid var(--Accordion-border-color);
+        }
+
+    }
+    
+    & > dt.is-new + dd {
+        border-bottom: 0px solid var(--Accordion-border-color);
+    }
+
+} 
+
+@keyframes new-item-animation {
+    0% {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+ 
+    50% {
+        opacity: .4;
+        transform: translateX(50px);
+    }
+ 
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

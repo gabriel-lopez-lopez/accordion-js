@@ -1,0 +1,16 @@
+/** 
+ * Footer Component 
+ */
+
+.Footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 100px 10px 20px;
+    font-size: .8rem;
+
+    .Footer-image {
+        margin-bottom: 10px;
+    }
+}
