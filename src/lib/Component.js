@@ -32,13 +32,16 @@ export default class Component {
         class Component {
 
             // Public Constructor
-            constructor({ selector }) {
+            // constructor({ selector }) {
+            constructor() {
 
-                this.selector = selector,
-                this.node = document.querySelector(selector)
+                const args = Array.prototype.slice.call(arguments);
+
+                this.selector = args[0] !== undefined && args[0].selector !== undefined ? args[0].selector : undefined,
+                this.node = document.querySelector(this.selector)
 
                 if (this.selector === undefined || this.selector === null || this.node === null) {
-                    throw new ErrorException('Class Component required selector and node params.');
+                    throw new ErrorException('Class Component required a valid selector.');
                 } else {
 
                     const argsArray = Array.prototype.slice.apply(arguments);
