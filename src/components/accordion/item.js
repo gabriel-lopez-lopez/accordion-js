@@ -169,8 +169,8 @@ function DListComponentOptionsMenu () {
 		console.error(error_exception);
 	} else {
 
-		const lessTxt = 'Ver de uno en uno';
-		const moreTxt = 'Ver todo';
+		const lessTxt = 'show one';
+		const moreTxt = 'show more than one';
 
 		// Create link
 		const ALink = document.createElement('a');

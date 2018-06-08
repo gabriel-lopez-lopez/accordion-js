@@ -16,7 +16,7 @@
  * Services available for the application
  */
 const services = {
-    api: resolveURL('/api', 'https://gist.githubusercontent.com/gabriel-lopez-lopez/bc87e54680242b68d0f96c8c419bcf2a/raw/a1e4f478f8ff2c8d739e8f3c8455d365bb510b9e/accordion-list-items.json')
+    api: resolveURL('/api', 'https://gist.githubusercontent.com/gabriel-lopez-lopez/bc87e54680242b68d0f96c8c419bcf2a/raw/26b68eda52d60e4db18f506a980d430990796751/accordion-list-items.json')
 };
 
 export {

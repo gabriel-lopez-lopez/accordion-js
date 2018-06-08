@@ -9,6 +9,9 @@ import FooterContent from './components/footer';
 import ButtonAddItems from './components/button';
 import http, { services } from './lib/http';
 
+// Mockup data
+import mockupData from './components/accordion/mockup-data';
+
 // CORE SUI FRAMEKORK CSS (scaffolding)
 import './assets/css/sui.css';
 // Main CSS that overwite styles
@@ -21,11 +24,7 @@ document.onreadystatechange = () => {
         // ACCORDION COMPONENT
         const accordion = new Accordion({
             selector: '#accordion',
-            dataItems: [
-                { id: 0, title: 'Title item 0', text: 'Item 0' },
-                { id: 1, title: 'Title item 1', text: 'Item 1' },
-                { id: 2, title: 'Title item 2', text: 'Item 2' }
-            ],
+            dataItems: mockupData,
             oneOpen: true
         });
 

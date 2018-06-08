@@ -1,6 +1,6 @@
 import AccordionItems from '../src/components/accordion/items';
 
-import mockupData from './mockup-data';
+import mockupData from '../src/components/accordion/mockup-data';
 
 
 describe('AccordionItems Class test', () => {

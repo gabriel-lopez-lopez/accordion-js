@@ -1,7 +1,7 @@
 import Accordion from '../src/components/accordion';
 import AccordionItems from '../src/components/accordion/items';
 
-import mockupData from './mockup-data';
+import mockupData from '../src/components/accordion/mockup-data';
 
 jest.mock('../src/components/accordion', () => {
 	// Works and lets you check for constructor calls:
