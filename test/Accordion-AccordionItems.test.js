@@ -4,7 +4,6 @@ import AccordionItems from '../src/components/accordion/items';
 import mockupData from '../src/components/accordion/mockup-data';
 
 jest.mock('../src/components/accordion', () => {
-	// Works and lets you check for constructor calls:
 	return jest.fn().mockImplementation(() => {
 		return { appendData: () => { } };
 	});
@@ -35,18 +34,12 @@ describe('AccordionItems Class test', () => {
 	});
 
 	it('Verificar si se llamó al método appendData de la clase AccordionItems', () => {
-
 		expect(Accordion).toHaveBeenCalledTimes(1);
-
-		let spy = jest.spyOn(accordion, 'appendData');
-
+		const spy = jest.spyOn(accordion, 'appendData');
 		const isAppendData = accordion.appendData(mockupData);
-
 		expect(accordion.appendData).toHaveBeenCalled();
-
 		spy.mockReset();
 		spy.mockRestore();
-
 	});
 
 });

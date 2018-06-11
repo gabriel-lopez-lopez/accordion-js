@@ -31,33 +31,31 @@ const oRequest = function (method, url) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open(method, bustCacheUrl(url));
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status >= 200 && this.status < 300) {
                 if (this.responseType === 'json') {
-                    resolve(xhr.response);
+                    resolve(this.response);
                     return;
                 }
-
                 try {
-                    resolve(JSON.parse(xhr.responseText));
+                    resolve(JSON.parse(this.responseText));
                 } catch (err) {
                     reject({
                         status: this.status,
-                        statusText: xhr.statusText
+                        statusText: this.statusText
                     });
                 }
-
-            } else {
+            } else if (this.readyState === 4) {
                 reject({
                     status: this.status,
-                    statusText: xhr.statusText
+                    statusText: this.statusText
                 });
             }
-        };
+        }
         xhr.onerror = function () {
             reject({
                 status: this.status,
-                statusText: xhr.statusText
+                statusText: this.statusText
             });
         };
         xhr.send();

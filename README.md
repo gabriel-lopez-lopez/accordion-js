@@ -36,6 +36,7 @@ Se incluye información sobre diferentes temas, como son:
 - [SUIT CSS](#suit-css)
 - [Datos con solicitudes AJAX asíncronas mediante XMLHttpRequest y Promesas](#datos-con-solicitudes-ajax-asíncronas-mediante-xmlhttprequest-y-promesas)
 - [Solicitudes de API en desarrollo (Proxing)](#solicitudes-de-api-en-desarrollo-proxing)
+- [Tests y Cobertura del código](#tests-y-cobertura-del-código)
 - [Construcción](#construcción)
 - [Despliegue en GitHub Pages](#despliegue-en-github-pages)
 
@@ -59,6 +60,7 @@ Antes de instalar ninguna dependencia esta es la estructura principal de directo
           webpack.dev.server.js   // Archivo de configuración para el servidor de desarrollo de Webpack
           webpack.development.js  // Archivo de configuración Webpack para entornos de desarrollo
           webpack.production.js   // Archivo de configuración Webpack para entornos de producción
+
       src/
           assets/                 // Repositorios de recursos gráficos, fuentes, css
               css/
@@ -68,8 +70,10 @@ Antes de instalar ninguna dependencia esta es la estructura principal de directo
               images/
               favicon.ico
               index.html          // Página principal de la APP
+
           components/             // Componentes
               ...
+
           lib/                    // Librerías/Componentes de apoyo
               Component.js        // Clase de la que heredan otros componentes
               ErrorExcepction.js  // Librería para extender objetos nativos mediante su prototipo
@@ -82,9 +86,14 @@ Antes de instalar ninguna dependencia esta es la estructura principal de directo
                                   en las peticiones...
                                   */
               services.js         // API local para solicitudes HTTP a Servicios REST y otras utilidades
+
           scss/                   // archivos sass
             ...
+
           index.js                // Archivo principal de la APP
+
+      test                        // Tests
+
       package-lock.json
       package.json
       README.md
@@ -133,6 +142,40 @@ Realiza **npm run build** y publica la construcción de producción en **GitHub 
   - **npm run deploy:start**
 
     Realiza la publicación en **GitHub pages**
+
+**npm run test**
+
+Ejecuta la automatización de pruebas para **Jest** y **Karma**
+
+  **Otros scripts secundarios**
+
+  - **npm run test:jest**
+  - **npm run test:jest:watch**
+  - **npm run test:karma**
+  - **npm run test:karma:watch**
+
+ **npm run coverage**
+
+Cobertura del código. Lanza simultáneamente los tests tanto de **Jest** como de **Karma**
+
+  **Otros scripts secundarios**
+
+  - **npm run coverage:jest**
+
+    Cobertura de código realizda con Jest.
+
+  - **npm run coveragejest:watch**
+
+    Cobertura de código realizda con Jest y observa los cambios que se realizan en los tests.
+
+  - **npm run coveragekarma**
+
+    Cobertura de código realizda con Karma.
+
+  - **npm run coveragekarma:watch**
+
+    Cobertura de código realizda con Karma y observa los cambios que se realizan en los tests.
+
 
 ### Navegadores soportados
 
@@ -232,6 +275,16 @@ Es conveniente escribir solicitudes HTTP tal que así **/api** sin tener que pre
 
 Para indicar al servidor de desarrollo que haga un proxy de cualquier solicitud desconocida a este servidor API en desarrollo, se ha agregado el campo **proxy** al archivo **package.json**.
 Puede configurarse este campo tal como se indica en el soporte de configuración de **[http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware#options)** o **[http-proxy](https://github.com/nodejitsu/node-http-proxy#options)**.
+
+### Tests y Cobertura del código
+
+Pruebas de automatización realizaas con frameworks y librerías como **Jest**, **karma**, **Mocha**, **Chai**, **Chai-dom**, **Chai-http**, **Sinon**...
+
+Por defecto, para las pruebas con navegador, sólo se encuentra activado Chrome, aunque se pueden probar también Edge, IE, Firefox y Safari.
+Sólo se ha dejado Chrome porque parece que con los navegadores Firefox y Safari, si algún test falla, el proceso de Construcción no puede terminar (Modificar los pertinentes scripts).
+
+Los navegadores pueden añadirse o quitarse en el archivo de configuración de Karma, que se encuentra en **config/karma/karma.conf.js**
+
 
 ### Construcción
 

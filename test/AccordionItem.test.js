@@ -1,58 +1,55 @@
-// import Accordion from '../src/components/accordion';
-// import AccordionItems from '../src/components/accordion/items';
+import Accordion from '../src/components/accordion';
+import DListComponent, { DListComponentOptionsMenu } from '../src/components/accordion/item';
+
+import mockupData from '../src/components/accordion/mockup-data';
+
+jest.mock('../src/components/accordion', () => {
+	return jest.fn().mockImplementation(() => {
+		return { appendData: () => { } };
+	});
+});
 
 
-import DListComponent from '../src/components/accordion/item';
-import DListComponentOptionsMenu from '../src/components/accordion/item';
+jest.mock('../src/components/accordion/item');
 
-// import mockupData from '../src/components/accordion/mockup-data';
+describe('Tests Functionality methods for Accordion test', () => {
 
-describe('Test Functionality methods for Accordion test', () => {
+	let Kaccordion;
 
-	// let accordionItems;
+	let context = {
+		onOpen: true
+	};
 
-	// beforeEach(() => {
+	let mock_item = {
+		node: null,
+		data: mockupData[0],
+		bArrow: false,
+		isLink: false,
+		isNewItem: false,
+		has_dd: false
+	};
 
-	// 	document.body.innerHTML = '<div id="app"><dl class="Accordion"></dl></div>';
+	beforeEach(() => {
+		document.body.innerHTML = '<div id="app"><dl class="Accordion"></dl></div>';
 
-	// 	// Clear all instances and calls to constructor and all methods:
-	// 	// Accordion.mockClear();
+		Kaccordion = new Accordion({
+			selector: '#app',
+			dataItems: mockupData,
+			oneOpen: true
+		});
 
-	// 	accordionItems = new AccordionItems({
-	// 		selector: '#app',
-	// 		node: document.querySelector('dl.Accordion'),
-	// 		dataItems: mockupData,
-	// 		oneOpen: true
-	// 	});
+	});
 
-	// });
 
-	it('TODO: DListComponent', () => {
-
-        // DLISComponent arguments
-            // node,
-            // data,
-            // bArrow = false,
-            // isLink = false,
-            // isNewItem = false,
-            // has_dd = false
-
-		// const spy = jest.spyOn(accordionItems, 'appendData');
-
-		// const isAppendData = accordionItems.appendData(mockupData);
-
-		// expect(accordionItems.appendData).toHaveBeenCalled();
-
-		// spy.mockReset();
-		// spy.mockRestore();
-
+	it('DListComponent es llamado correctamente y existe el nodo de tipo DL', () => {
+		DListComponent.call(context, mock_item);
+		expect(DListComponent).toBeCalled();
     });
 
-    it('TODO: DListComponentOptionsMenu', () => {
 
-        // DListComponentOptionsMenu arguments
-            // Recibe contexto
-
+	it('DListComponentOptionsMenu es llamado correctamente', () => {
+		DListComponentOptionsMenu.call(Kaccordion);
+		expect(DListComponentOptionsMenu).toBeCalled();
 	});
 
 });

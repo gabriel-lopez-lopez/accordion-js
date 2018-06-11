@@ -5,6 +5,7 @@
 
 // Components and dependencies
 import ErrorException from '../../lib/ErrorException';
+import transitionend from './item.transitionend';
 
 /**
  * Create the components for the DList object
@@ -70,38 +71,12 @@ function DListComponent ({
 				}
 				target.classList[action]('is-animating');
 			};
-			/**
-			 * Event Handler (click)
-			 * @param {Object} e Event
-			 */
-			const onTransitionEnd = function (e) {
-				// Nothing will be done for any transition that ends and
-				// that is not a transaction of the element itself.
-				if (e.target !== this) { return; }
-
-				// DList description
-				const $DList_d = e.target.nextElementSibling;
-
-				const classNameAdd = $DList_d.classList.contains('is-open') ? 'is-close' : 'is-open';
-				const classNameRemove = $DList_d.classList.contains('is-open') ? 'is-open' : 'is-close';
-
-				$DList_d.classList.remove(classNameRemove);
-				$DList_d.classList.add(classNameAdd);
-
-				// If it already had a declared maximum height it´s removed
-				// and if not, it´s established by the height that it has of displacement (scroll)
-				if ($DList_d.style.maxHeight) {
-					$DList_d.style.maxHeight = null;
-				} else {
-					$DList_d.style.maxHeight = $DList_d.scrollHeight + "px";
-				}
-			}
 
 			// Register events
 			$elem.addEventListener('click', onClick, false);
 
 			// Register events for DList terms
-			$elem.addEventListener('transitionend', onTransitionEnd.bind($elem), false);
+			$elem.addEventListener('transitionend', transitionend.bind($elem), false);
 
 		};
 
@@ -122,8 +97,8 @@ function DListComponent ({
 			$dt.appendChild($arrow);
 		}
 
-		// Create events for DList terms
-		addEventListener($dt);
+		// Create events for DList terms if it is link
+		if (isLink) { addEventListener($dt); }
 
 		// Append DList terms in container node (DList object)
 		node.appendChild($dt);
@@ -147,7 +122,7 @@ function DListComponent ({
 		// half a second passeds to finish by removing a style from the component
 		if (isNewItem) {
 			setTimeout(() => {
-				$dt.classList.remove('is-new')
+				$dt.classList.remove('is-new');
 			}, 500);
 		}
 

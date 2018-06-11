@@ -53,8 +53,9 @@ const postCSSLoader = {
 };
 
 // Objeto global process del Servidor Node
-process.env.NODE_ENV = 'development';
-process.env.BABEL_ENV = 'development';
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.BABEL_ENV = process.env.BABEL_ENV || 'development';
 
 console.log('appPaths:', appPaths);
 console.log();

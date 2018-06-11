@@ -2,27 +2,19 @@ import Component from '../src/lib/Component';
 import ErrorException from '../src/lib/ErrorException';
 
 
-describe('Component Class test', () => {
+describe('Component Class Exceptions test', () => {
 
 	it('Verificar si se produce una excepción cuando se llamó al constructor de la clase Componente sin pasar ningún argumento', () => {
-
 		const exception = new ErrorException('Class Component required a valid selector.');
-
 		const fn = () => new Component();
-
 		expect(fn).toThrow(exception);
-
 	});
 
 
 	it('Verificar si se lanza la excepción cuando se llamó al constructor de la clase Componente sin pasar un selector', () => {
-
 		const exception = new ErrorException('Class Component required a valid selector.');
-
 		const fn = () => new Component({});
-
 		expect(fn).toThrow(exception);
-
 	});
 
 

@@ -21,16 +21,12 @@ describe('AccordionItems Class test', () => {
 	});
 
 	it('Verificar si se llamó al método appendData de la clase AccordionItems', () => {
-
 		const spy = jest.spyOn(accordionItems, 'appendData');
-
 		const isAppendData = accordionItems.appendData(mockupData);
-
 		expect(accordionItems.appendData).toHaveBeenCalled();
-
+		expect(isAppendData).toBe(true);
 		spy.mockReset();
 		spy.mockRestore();
-
 	});
 
 });

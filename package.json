@@ -1,6 +1,6 @@
 {
 	"name": "accordion-js",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "Accordion with native javascript",
 	"author": "Gabriel López López <gabriel.lopez.lopez@hotmail.com>",
 	"homepage": "https://gabriel-lopez-lopez.github.io/accordion-js/",
@@ -16,9 +16,16 @@
 		"deploy:gh-pages": "npm run deploy:cleanup && npm run deploy:start",
 		"deploy:cleanup": "gh-pages-clean -d node_modules/gh-pages/.cache",
 		"deploy:start": "gh-pages -d build",
-		"coverage": "jest --colors --coverage",
-		"test": "jest --colors",
-		"test:watch": "jest --watch"
+		"test": "npm run test:jest && npm run test:karma",
+		"test:jest": "jest --config=config/jest/jest.conf.js",
+		"test:jest:watch": "jest --watch --config=config/jest/jest.conf.js",
+		"test:karma": "karma start config/karma/karma.conf.js --single-run",
+		"test:karma:watch": "karma start config/karma/karma.conf.js --watch --no-single-run",
+		"coverage": "npm run coverage:jest && npm run coverage:karma",
+		"coverage:jest": "jest --colors --coverage --config=config/jest/jest.conf.js",
+		"coverage:jest:watch": "jest --colors --watch --coverage --config=config/jest/jest.conf.js",
+		"coverage:karma": "cross-env COVERAGE=true karma start config/karma/karma.conf.js --single-run",
+		"coverage:karma:watch": "cross-env COVERAGE=true karma start config/karma/karma.conf.js --no-single-run"
 	},
 	"dependencies": {
 		"gh-pages": "^1.2.0"
@@ -32,8 +39,12 @@
 		"babel-loader": "^7.1.3",
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-env": "^1.7.0",
+		"chai": "^4.1.2",
+		"chai-dom": "^1.8.0",
+		"chai-http": "^4.0.0",
 		"chalk": "^2.3.2",
 		"clean-webpack-plugin": "^0.1.19",
+		"cross-env": "^5.1.6",
 		"css-loader": "^0.28.9",
 		"error-overlay-webpack-plugin": "^0.1.5",
 		"eslint": "^4.18.2",
@@ -43,12 +54,27 @@
 		"hoek": "^5.0.3",
 		"html-webpack-plugin": "^3.0.6",
 		"http-proxy-middleware": "^0.17.4",
-		"ignore-styles": "^5.0.1",
 		"jest": "^23.1.0",
+		"karma": "^2.0.2",
+		"karma-chai": "^0.1.0",
+		"karma-chai-dom": "^1.1.0",
+		"karma-chai-http": "^1.0.1",
+		"karma-chrome-launcher": "^2.2.0",
+		"karma-coverage": "^1.1.2",
+		"karma-edge-launcher": "^0.4.2",
+		"karma-firefox-launcher": "^1.1.0",
+		"karma-ie-launcher": "^1.0.0",
+		"karma-mocha": "^1.3.0",
+		"karma-safari-launcher": "^1.0.0",
+		"karma-sinon": "^1.0.5",
+		"karma-sinon-ie": "^2.0.0",
+		"karma-webpack": "^3.0.0",
+		"mocha": "^5.2.0",
 		"node-sass": "^4.9.0",
 		"postcss-flexbugs-fixes": "^3.3.0",
 		"postcss-loader": "^2.1.1",
 		"sass-loader": "^6.0.6",
+		"sinon": "^5.1.1",
 		"style-loader": "^0.20.3",
 		"uglifyjs-webpack-plugin": "^1.2.2",
 		"url-loader": "^1.0.1",
@@ -72,12 +98,6 @@
 			"pathRewrite": {
 				"^/api": "/gabriel-lopez-lopez/bc87e54680242b68d0f96c8c419bcf2a/raw/26b68eda52d60e4db18f506a980d430990796751/accordion-list-items.json"
 			}
-		}
-	},
-	"jest": {
-		"moduleNameMapper": {
-			"\\.(css|scss|less)$": "<rootDir>/config/jest/__mocks__/styleMock.js",
-			"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/jest/__mocks__/fileMock.js"
 		}
 	}
 }
