@@ -5,7 +5,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const appPaths = require('../paths');
 
 // Directorio principal de la aplicación
 const appDirectory = fs.realpathSync(process.cwd());
